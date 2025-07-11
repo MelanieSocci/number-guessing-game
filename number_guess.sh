@@ -9,10 +9,7 @@ GUESS_COUNT=0
 echo "Enter your username:"
 read USERNAME
 
-# Consultar usuario
 USER_INFO=$($PSQL "SELECT games_played, best_game FROM users WHERE username='$USERNAME'")
-
-# Mensaje según si existe
 if [[ -z $USER_INFO ]]; then
   echo "Welcome, $USERNAME! It looks like this is your first time here."
   $PSQL "INSERT INTO users(username) VALUES('$USERNAME')" > /dev/null
